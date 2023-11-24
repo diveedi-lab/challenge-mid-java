@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      TLC_DBURL: postgresql://postgres:5432/challenge
+      TLC_DBUSER: postgres
+      TLC_DBPASSWORD: secret
+    ports:
+      - "9080:9080"
+      - "7777:7777"
+    volumes:
+      - .:/app
+      # mapping the repository for development purpose
+      - ./repository:/root/.m2/repository
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: challenge
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5432:5432"
+    volumes:
+      - cdata:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+volumes:
+  cdata:
