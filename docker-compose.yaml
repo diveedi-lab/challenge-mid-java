@@ -12,6 +12,7 @@ services:
     ports:
       - "9080:9080"
       - "7777:7777"
+      - "4200:4200"
     volumes:
       - .:/app
       # mapping the repository for development purpose

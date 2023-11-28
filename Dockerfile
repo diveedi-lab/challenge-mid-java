@@ -12,7 +12,14 @@ RUN set -eux \
     && apt-get update \
     && apt-get install -y java-1.8.0-amazon-corretto-jdk=1:$version maven \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
-        curl gnupg software-properties-common
+        gnupg software-properties-common
+
+ENV NVM_DIR=/usr/local/nvm
+ENV NODE_VERSION="14.21.3"
+
+RUN mkdir -p ${NVM_DIR}
+
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 
 ENV LANG C.UTF-8
 ENV JAVA_HOME=/usr/lib/jvm/java-1.8.0-amazon-corretto
@@ -20,6 +27,7 @@ ENV MAVEN_HOME=/usr/share/maven
 
 ENV PATH=$MAVEN_HOME/bin:$PATH
 ENV PATH=$JAVA_HOME/bin:$PATH
+ENV PATH=$NVM_DIR/v${NODE_VERSION}/bin:$PATH
 
 WORKDIR /app
 
