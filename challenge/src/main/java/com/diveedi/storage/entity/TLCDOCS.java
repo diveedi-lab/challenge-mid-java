@@ -24,13 +24,13 @@ public class TLCDOCS {
     private BigDecimal updatedAt;
 
     @Column(name = "owner_id")
-    private TLCPERS ownerId;
+    private int ownerId;
 
-    public TLCPERS getOwnerId() {
+    public int getOwnerId() {
         return ownerId;
     }
 
-    public void setOwnerId(TLCPERS ownerId) {
+    public void setOwnerId(int ownerId) {
         this.ownerId = ownerId;
     }
 
