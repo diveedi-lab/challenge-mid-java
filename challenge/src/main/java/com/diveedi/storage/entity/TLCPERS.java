@@ -14,9 +14,6 @@ public class TLCPERS {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "owner_id")
-    private TLCDOCS ownerId;
-
     @Column(name = "first_name")
     private String firstName;
 
@@ -32,14 +29,6 @@ public class TLCPERS {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public TLCDOCS getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(TLCDOCS ownerId) {
-        this.ownerId = ownerId;
     }
 
     public String getFirstName() {
