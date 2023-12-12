@@ -4,6 +4,10 @@
 # included bugs on purpose.
 mvn -Dmaven.test.skip=true clean install compile package
 
+TLC_DBURL="${1:-postgresql://localhost:5432/challenge}"
+TLC_DBUSER="${2:-postgres}"
+TLC_DBPASSWORD="${3:-secret}"
+
 # run database migrations
 mvn -pl challenge \
     -Dflyway.url="jdbc:$TLC_DBURL" \
@@ -12,4 +16,7 @@ mvn -pl challenge \
     flyway:migrate
 
 # start the server
-mvn -pl challenge liberty:run -Dliberty.jvm.debug="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=7777"
+env TLC_DBURL=$TLC_DBURL \
+    TLC_DBUSER=$TLC_DBUSER \
+    TLC_DBPASSWORD=$TLC_DBPASSWORD \
+    mvn -pl challenge liberty:run -Dliberty.jvm.debug="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=7777"
