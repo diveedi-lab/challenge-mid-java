@@ -14,6 +14,8 @@ Per avviare challenge su OpenLibery ti basterà eseguire:
 ```sh
 $ docker-compose up -d
 ```
+Per comodità forniamo lo script in `scripts/restart` per riavviare il container dell'app, che eseguirà una nuova build del backend.  
+Se vuoi entrare nel container provvediamo anche lo script in `scripts/shell` che puoi eseguire dopo l'avvio del container `app`.
 
 Durante l'avvio del container, verrà sempre eseguito `/entrypoint.sh`, che come vedi installa gli artefatti, genera i source e impacchetta i vari progetti, successivamente esegue le migrazioni e avvia il server.  
 Esponiamo i resource della challenge sulla porta `:9080`, mentre mappiamo anche la porta `:7777` in modo da poter attaccare il debugger (già configurato se utilizzi Visual Studio Code con "Extension Pack for Java").  
