@@ -14,6 +14,13 @@ RUN set -eux \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
         curl gnupg software-properties-common
 
+ARG UID=1000
+ARG GID=1000
+
+RUN groupadd -g "${GID}" challenger \
+  && useradd -m --no-log-init -u "${UID}" -g "${GID}" challenger
+USER challenger
+
 ENV LANG C.UTF-8
 ENV JAVA_HOME=/usr/lib/jvm/java-1.8.0-amazon-corretto
 ENV MAVEN_HOME=/usr/share/maven
