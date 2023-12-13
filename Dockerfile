@@ -21,6 +21,13 @@ RUN mkdir -p ${NVM_DIR}
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 
+ARG UID=1000
+ARG GID=1000
+
+RUN groupadd -g "${GID}" challenger \
+  && useradd -m --no-log-init -u "${UID}" -g "${GID}" challenger
+USER challenger
+
 ENV LANG C.UTF-8
 ENV JAVA_HOME=/usr/lib/jvm/java-1.8.0-amazon-corretto
 ENV MAVEN_HOME=/usr/share/maven

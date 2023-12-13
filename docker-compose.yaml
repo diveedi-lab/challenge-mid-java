@@ -5,6 +5,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - "UID=${UID:-1000}"
+        - "GID=${GID:-1000}"
     environment:
       TLC_DBURL: postgresql://postgres:5432/challenge
       TLC_DBUSER: postgres
@@ -16,7 +19,7 @@ services:
     volumes:
       - .:/app
       # mapping the repository for development purpose
-      - ./repository:/root/.m2/repository
+      - $HOME/.m2/repository:/root/.m2/repository
     depends_on:
       - postgres
 
