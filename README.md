@@ -25,7 +25,10 @@ Per comodità forniamo lo script in `scripts/restart` per riavviare il container
 Se vuoi entrare nel container provvediamo anche lo script in `scripts/shell` che puoi eseguire dopo l'avvio del container `app`.
 
 Durante l'avvio del container, verrà sempre eseguito `/entrypoint.sh`, che come vedi installa gli artefatti, genera i source e impacchetta i vari progetti, successivamente esegue le migrazioni e avvia il server.  
-Esponiamo i resource della challenge sulla porta `:9080`, mentre mappiamo anche la porta `:7777` in modo da poter attaccare il debugger (già configurato se utilizzi Visual Studio Code con "Extension Pack for Java").  
+Esponiamo i resource della challenge sulla porta `:9080`, mentre mappiamo anche la porta `:7777` in modo da poter attaccare il debugger.
+L'attach del debugger è già configurato se utilizzi i principali IDE:
+- Intellij IDEA come run configuration
+- Visual Studio Code (installando l'estensione "Extension Pack for Java")  
 
 In `/repository` troverai il volume mappato al `~/.m2/repository`.
 
